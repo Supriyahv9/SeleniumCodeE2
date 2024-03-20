@@ -5,20 +5,21 @@ import java.io.IOException;
 import org.apache.poi.EncryptedDocumentException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import CommonUtils.BaseClass;
 import CommonUtils.ExcelUtil;
+import CommonUtils.ListenerImplementation;
 import CommonUtils.WebDriverUtil;
-
+@Listeners(ListenerImplementation.class)
 public class ContactsTest extends BaseClass {
-
+	
 	WebDriverUtil wutil = new WebDriverUtil();
 	ExcelUtil eutil = new ExcelUtil();
 	
 	@Test
-	public void CreateContactsTest() throws EncryptedDocumentException, IOException {
-		
+	public void CreateContactTest() throws EncryptedDocumentException, IOException {
 		
 		//To read data from Excel File
 String FIRSTNAME = eutil.getDataFromExcelFile("Contacts", 0, 1);
@@ -67,4 +68,6 @@ String GROUP = eutil.getDataFromExcelFile("Contacts", 2, 1);
 		driver.findElement(By.xpath("(//input[@name='button'])[1]")).click();
 		
 	}
-}
+	}
+
+

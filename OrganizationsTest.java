@@ -24,11 +24,11 @@ public class OrganizationsTest extends BaseClass {
 	JavaUtil jutil = new JavaUtil();
 	
 	@Test
-	public void OrganizationTest() throws IOException, InterruptedException {
+	public void CreateOrganizationTest() throws IOException, InterruptedException {
 		
 	//To read data from Excel File
-	String ORGNAME = eutil.getDataFromExcel("Organizations", 0, 1);
-	String GROUP = eutil.getDataFromExcel("Organizations", 1, 1);
+	String ORGNAME = eutil.getDataFromExcelFile("Organizations", 0, 1);
+	String GROUP = eutil.getDataFromExcelFile("Organizations", 1, 1);
 	
 	//Click on Organization
 	driver.findElement(By.xpath("(//a[text()='Organizations'])[1]")).click();
