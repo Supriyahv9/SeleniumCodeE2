@@ -1,0 +1,108 @@
+Steps to set the path for Jenkins:
+1)Go to browser---download apache maven
+2)Click on Binary zip archive	apache-maven-3.9.6-bin.zip(Link)
+3)extract the apache-maven-3.9.6-bin.zip file
+4)Move the extracted apache-maven-3.9.6-bin file to C-drive
+5)Copy the maven path===C:\apache-maven-3.9.6-bin\apache-maven-3.9.6
+6)Copy the jdk path===C:\Program Files\Java\jdk-11
+7)Copy the git path:
+*Go to browser---download git
+*Click on download for windows
+*Click on 64-bit Git for Windows Setup.
+*Install the Git-2.44.0-64-bit
+*Copy the path===C:\Program Files\Git\bin
+8)Go to Edit system envirnoment variable
+*In user variable for user---click on New
+*Enter
+ Variable Name: JAVA_HOME
+ Variable Value: C:\Program Files\Java\jdk-11
+Click on OK.
+*Enter
+ Variable Name: MAVEN_HOME
+ Variable Value: C:\apache-maven-3.9.6-bin\apache-maven-3.9.6
+Click on OK.
+9)Go to Edit system envirnoment variable
+*In System variable---click on path
+*Click on new--
+C:\apache-maven-3.9.6-bin\apache-maven-3.9.6\bin
+C:\Program Files\Java\jdk-11\bin
+
+How to run Testscript with  commandline:
+1)Select the maven project--right click on pom.xml
+2)click on properties
+3)click on location
+4)type cmd in the location
+*mvn clean----to remove the files which are present in target folder
+*mvn validate----it will check pom.xml & download jar file 
+*mvn compile-----it will check syntax mistakes 
+*mvn test----for testscript execution
+
+Steps to set path in jenkins:
+1)Login to jenkins
+2)Click on manage jenkins---click on tools
+3)Check JDK Installation,Git Installation,Maven Installation
+
+4)Go to JDK Installation:
+*Click on AddJDK
+Name		JAVA_HOME
+JAVA_HOME	C:\Program Files\Java\jdk-11
+
+5)Go to Maven Installation:
+*Click on AddMaven
+Name		MAVEN_HOME
+MAVEN_HOME	C:\apache-maven-3.9.6-bin\apache-maven-3.9.6
+*Click on apply & save
+
+6)Go to Git Installation:
+*Click on addgit----click on git
+Name			Default
+Path to Git executable	C:\Program Files\Git\bin\git.exe
+*Click on apply & save
+
+7)How to add maven project to jenkins:
+*Click on manage jenkins
+*Click on plugins
+*Go for available plugins
+*search for Maven Integration
+*select the checkbox Maven Integration
+*Click on Install
+
+8)How to create job in jenkins :
+*Go to dashboard----click on new iteam
+*Enter iteam name---select Maven Project----Click on OK
+*Go to Build
+Root POM		add the path of pom.xml
+Goals and options	clean test
+*click on apply & save
+*Click on Build now
+
+9)How to upload the Maven Project to github ?
+*Creat a repositorty
+*Step1:select the maven project---right click ---click on team---click on share project---select checkbox(use or create a new repositorty)---click on maven project---click on create repository---click on finish
+*Step2:select the maven project---right click ---click on team---click on commit---move the project from unstaged changes to staged changes---enter commit message---clickn commit & push
+*Step3:select the maven project---right click ---click on team---click on Branch master---enter url,username,password---click on preview---click on preview---Click on push----Enter the user,password(token number)---click on login.
+
+10)How to execute git project in jenkins:
+*Go to dashboard----click on new iteam
+*Enter iteam name---select Maven Project----Click on OK
+*In Source Code Management---select git
+*Enter
+Repository URL   
+Credentials---click on add--select jenkins---enter username & password (git)---click on add
+*Click on apply & save
+*Click on Build now
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

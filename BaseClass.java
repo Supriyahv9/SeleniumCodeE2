@@ -20,6 +20,9 @@ public class BaseClass {
 	//Driver is global variable
 	public WebDriver driver;
 	
+	//only to takescreenshot
+	public static WebDriver sdriver;
+	
 	//Object creation
 	PropertyFileUtil putil = new PropertyFileUtil();
 	WebDriverUtil wutil = new WebDriverUtil();
@@ -45,7 +48,8 @@ public class BaseClass {
 		}else {
 			 driver = new FirefoxDriver();
 		}
-	
+	//initialize the static driver for takescreenshot
+		sdriver = driver;
 		//To maximize window
 		wutil.maximize(driver);
 		

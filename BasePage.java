@@ -28,43 +28,25 @@ public class BasePage {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.get("http://localhost:8888/");
 		
-		LoginPage lp = new LoginPage();
-		//To initialize the webelement
-		PageFactory.initElements(driver, lp);
-		//Enter admin in username tf
-		lp.getUsernametf().sendKeys("admin");
-		//Enter admin in password tf
-		lp.getPasswordtf().sendKeys("admin");
-		//Click on Login button
-		lp.getLoginbtn().click();
+		LoginPage lp = new LoginPage(driver);
+		lp.Login("admin", "admin");
 		
-		HomePage hp = new HomePage();
-		//To initialize the webelement
-		PageFactory.initElements(driver, hp);
-		//Click on Organizations
-		hp.getOrganizations().click();
+		HomePage hp = new HomePage(driver);
+		hp.Home(driver);
 		
-		OrganizationsPage op = new OrganizationsPage();
-		//To initialize the webelement
-		PageFactory.initElements(driver, op);
-		//Click on Create Organization..(+)
-		op.getCreateorganization().click();
-		
-OrganizationInformationPage oip = new OrganizationInformationPage();
-PageFactory.initElements(driver, oip);
-//Enter Intel in Organization name tf
-oip.getOrganizationnametf().sendKeys("Intel88");		
-//Click on group radio button
-oip.getGroupbtn().click();	
-//Handle dropdown and select support group
-Select s = new Select(oip.getDropdown());
-s.selectByVisibleText("Support Group");		
-//Click on save button
-oip.getSavebtn().click();
+		OrganizationsPage op = new OrganizationsPage(driver);
+		op.Organizations();
+				
+		OrganizationInformationPage oip = new OrganizationInformationPage(driver);
+		oip.OrganizationInformation("Intel6", "Support Group");
 		
 		Thread.sleep(2000);
-		Actions a = new Actions(driver);
-		a.moveToElement(hp.getImage()).perform();
-		hp.getSignoutbtn().click();
+	
+		hp.Home(driver);
+
+		
+	
+		
+		
 	}
 }

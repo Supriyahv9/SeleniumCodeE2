@@ -1,5 +1,7 @@
 package CommonUtils;
 
+import java.io.IOException;
+
 import org.testng.ITestContext;
 
 
@@ -44,6 +46,18 @@ public class ListenerImplementation implements ITestListener {
 		//Capture the method name
 	String methodname = result.getMethod().getMethodName();
 	Reporter.log(methodname+"Testscript execution is Fail",true);
+	test.log(Status.FAIL, "Testscript execution is Fail");
+	//To take screenshot if testscript is failed
+	WebDriverUtil wutil = new WebDriverUtil();
+	try {
+		String path = wutil.Screenshot(BaseClass.sdriver);
+		test.addScreenCaptureFromPath(path);
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+
+	
 	}
 
 	public void onTestSkipped(ITestResult result) {
@@ -52,6 +66,7 @@ public class ListenerImplementation implements ITestListener {
 		//Capture the method name
 	String methodname = result.getMethod().getMethodName();
 	Reporter.log(methodname+"Testscript execution is Skip",true);
+	test.log(Status.SKIP, "Testscript execution is Skip");
 	}
 
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
@@ -66,9 +81,9 @@ public class ListenerImplementation implements ITestListener {
 
 	public void onStart(ITestContext context) {
 		// TODO Auto-generated method stub
-	
+		JavaUtil jutil = new JavaUtil();
 		//To configure extent reports
-	ExtentSparkReporter	esr = new ExtentSparkReporter("./Extentreport/report.html");
+	ExtentSparkReporter	esr = new ExtentSparkReporter("./Extentreport/"+jutil.getRandomNumber()+"report.html");
 	esr.config().setReportName("Vtigercrm");	
 	esr.config().setTheme(Theme.STANDARD);
 	esr.config().setDocumentTitle("Vtiger");

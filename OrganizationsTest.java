@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -36,8 +37,17 @@ public class OrganizationsTest extends BaseClass {
 	//Click on Create Organization..(+)
 	driver.findElement(By.cssSelector("img[alt='Create Organization...']")).click();
 	
+	//wutil.Screenshot(driver);
+	
 	//Enter Organization Name
 	driver.findElement(By.name("accountname")).sendKeys(ORGNAME+jutil.getRandomNumber());
+	
+	//To fail the testscript we are using asserts
+	String actualurl = driver.getCurrentUrl();
+	String expectedurl = "http://localhost:8888/pune/index.php?module=Accounts&action=EditView&return_action=DetailView&parenttab=Marketing";
+	Assert.assertEquals(actualurl, expectedurl);
+	
+	
 	
 	//In AssignedTo Click on Group
 	driver.findElement(By.xpath("(//input[@name='assigntype'])[2]")).click();

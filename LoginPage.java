@@ -1,10 +1,16 @@
 package POM;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
+	//Here driver is global
+	public WebDriver driver;
+	
+	
 	@FindBy(name="user_name")
 	private WebElement usernametf;
 	
@@ -25,4 +31,25 @@ public class LoginPage {
 	public WebElement getLoginbtn() {
 		return loginbtn;
 	}
+	
+	//Create a Constructor
+	public LoginPage(WebDriver driver) {
+		//To initialize the webelement
+	PageFactory.initElements(driver, this);
+	}
+	
+	//Create a method
+	public HomePage Login(String usernamedata,String passworddata) {
+		
+		usernametf.sendKeys(usernamedata);
+		passwordtf.sendKeys(passworddata);
+		loginbtn.click();
+		return new HomePage(driver);
+	}
+	
+	
+	
+	
+	
+	
 }
